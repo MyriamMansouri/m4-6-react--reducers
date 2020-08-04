@@ -15,12 +15,11 @@ function App() {
       .then((res) => res.json())
       .then((data) => receiveSeatInfoFromServer(data));
   }, []);
-  console.log(state);
+
   return (
     <>
       <TicketWidget />
       <GlobalStyles />
-      {state.numOfRows}
     </>
   );
 }

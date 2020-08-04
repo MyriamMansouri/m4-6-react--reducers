@@ -9,7 +9,7 @@ const initialState = {
 };
 
 function reducer(state, { type, seats, numOfRows, seatsPerRow}) {
-console.log(state)
+
   switch (type) {
     case "receive-seat-info-from-server":
       return {
