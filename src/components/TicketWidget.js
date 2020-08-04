@@ -9,10 +9,7 @@ import { SeatContext } from "./SeatContext";
 const TicketWidget = () => {
   const { state } = React.useContext(SeatContext);
   const { numOfRows, seatsPerRow } = state;
-
-  // TODO: implement the loading spinner <CircularProgress />
-  // with the hasLoaded flag
-
+  console.log(state.seats);
   return (
     <Main>
       {!state.hasLoaded && <CircularProgress />}
@@ -27,10 +24,15 @@ const TicketWidget = () => {
                 <RowLabel>Row {rowName}</RowLabel>
                 {range(seatsPerRow).map((seatIndex) => {
                   const seatId = `${rowName}-${getSeatNum(seatIndex)}`;
-
+                  const { isBooked, price } = state.seats[seatId];
                   return (
                     <SeatWrapper key={seatId}>
-                      <Seat />
+                      <Seat
+                        isBooked={isBooked}
+                        rowName={rowName}
+                        seatIndex={seatIndex}
+                        price={price}
+                      />
                     </SeatWrapper>
                   );
                 })}
@@ -47,7 +49,7 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height:100vh;
+  min-height: 100vh;
 `;
 
 const Wrapper = styled.div`
@@ -72,12 +74,13 @@ const Row = styled.div`
 
 const RowLabel = styled.div`
   font-weight: bold;
-  position:absolute;
+  position: absolute;
   transform: translateX(calc(-100% - 30px));
 `;
 
 const SeatWrapper = styled.div`
   padding: 5px;
+  cursor: pointer;
 `;
 
 export default TicketWidget;
