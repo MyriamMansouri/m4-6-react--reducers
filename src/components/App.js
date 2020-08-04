@@ -1,4 +1,5 @@
 import React from "react";
+import TicketWidget from "./TicketWidget";
 import { SeatContext } from "./SeatContext";
 
 import GlobalStyles from "./GlobalStyles";
@@ -17,6 +18,7 @@ function App() {
   console.log(state);
   return (
     <>
+      <TicketWidget />
       <GlobalStyles />
       {state.numOfRows}
     </>
