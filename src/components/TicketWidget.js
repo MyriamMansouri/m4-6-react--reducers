@@ -8,8 +8,8 @@ import { SeatContext } from "./SeatContext";
 
 const TicketWidget = () => {
   const { state } = React.useContext(SeatContext);
-  const { numOfRows, seatsPerRow } = state;
-  console.log(state.seats);
+  const { numOfRows, seatsPerRow, seats } = state;
+
   return (
     <Main>
       {!state.hasLoaded && <CircularProgress />}
@@ -24,14 +24,16 @@ const TicketWidget = () => {
                 <RowLabel>Row {rowName}</RowLabel>
                 {range(seatsPerRow).map((seatIndex) => {
                   const seatId = `${rowName}-${getSeatNum(seatIndex)}`;
-                  const { isBooked, price } = state.seats[seatId];
+                  const { isBooked, price } = seats[seatId];
                   return (
                     <SeatWrapper key={seatId}>
                       <Seat
-                        isBooked={isBooked}
+                        status={isBooked ? "unavailable" : "available"}
                         rowName={rowName}
                         seatIndex={seatIndex}
                         price={price}
+                        width={36}
+                        height={36}
                       />
                     </SeatWrapper>
                   );
