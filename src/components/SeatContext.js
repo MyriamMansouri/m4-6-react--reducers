@@ -8,10 +8,16 @@ const initialState = {
   seatsPerRow: 0,
 };
 
-function reducer(state, { type, seats, numOfRows, seatsPerRow}) {
-
+function reducer(state, { type, seats, numOfRows, seatsPerRow }) {
   switch (type) {
     case "receive-seat-info-from-server":
+      return {
+        hasLoaded: true,
+        seats: seats,
+        numOfRows: numOfRows,
+        seatsPerRow: seatsPerRow,
+      };
+    case "mark-seat-as-purchased":
       return {
         hasLoaded: true,
         seats: seats,

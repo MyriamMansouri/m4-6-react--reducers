@@ -9,7 +9,6 @@ import { BookingContext } from "./BookingContext";
 
 const Seat = ({ status, rowName, seatIndex, price, seatId }) => {
   const {
-    state,
     actions: { beginBookingProcess },
   } = React.useContext(BookingContext);
 
@@ -17,7 +16,7 @@ const Seat = ({ status, rowName, seatIndex, price, seatId }) => {
     <Tippy
       delay={70}
       content={
-        <Tooltip rowName={rowName} seatIndex={seatIndex} price={price} />
+        <Tooltip rowName={rowName} seat={seatIndex + 1} price={price} />
       }
     >
       <button

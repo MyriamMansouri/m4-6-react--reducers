@@ -7,7 +7,6 @@ import PurchaseModal from "./PurchaseModal";
 
 function App() {
   const {
-    state,
     actions: { receiveSeatInfoFromServer },
   } = React.useContext(SeatContext);
 

@@ -35,7 +35,7 @@ const PurchaseModal = () => {
       resetBookingProcess,
       submitCreditCardInfo,
       completedPurchase,
-      incorrectCreditCardInfo,
+      purchaseTicketFailure,
     },
   } = React.useContext(BookingContext);
 
@@ -51,9 +51,11 @@ const PurchaseModal = () => {
 
   const handleClose = () => {
     resetBookingProcess();
+
   };
 
   const handlePurchase = (seatId, creditCard, expiration) => {
+
     submitCreditCardInfo();
     fetch("/api/book-seat", {
       method: "POST",
@@ -69,7 +71,7 @@ const PurchaseModal = () => {
           completedPurchase();
           handleClose();
         } else {
-          incorrectCreditCardInfo();
+            purchaseTicketFailure(data.message);
         }
       });
   };

@@ -15,7 +15,7 @@ const reducer = (state, { type, selectedSeatId, price, error }) => {
       return { ...state, status: "seat-selected", selectedSeatId , price };
     case "submit-credit-card-info":
       return { ...state, status: "awaiting-response" };
-    case "incorrect-credit-card-info":
+    case "purchase-ticket-failure":
       return { ...state, status: "error", error };
     case "completed-purchase":
       return { ...state, status: "purchased" };
@@ -38,11 +38,11 @@ export const BookingProvider = ({ children }) => {
     });
   };
 
-  const incorrectCreditCardInfo = () => {
+  const purchaseTicketFailure = (message) => {
     dispatch({
-      type: "incorrect-credit-card-info",
+      type: "purchase-ticket-failure",
       ...state,
-      error: 'Credit card info is incomplete'
+      error: message
     });
   };
 
@@ -78,7 +78,7 @@ export const BookingProvider = ({ children }) => {
           resetBookingProcess,
           submitCreditCardInfo,
           completedPurchase,
-          incorrectCreditCardInfo
+          purchaseTicketFailure
         },
       }}
     >
