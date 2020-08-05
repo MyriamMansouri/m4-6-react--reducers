@@ -5,8 +5,14 @@ import "tippy.js/dist/tippy.css";
 
 import Tooltip from "./Tooltip";
 import seatAvailable from "../assets/seat-available.svg";
+import { BookingContext } from "./BookingContext";
 
-const Seat = ({ status, rowName, seatIndex, price }) => {
+const Seat = ({ status, rowName, seatIndex, price, seatId }) => {
+  const {
+    state,
+    actions: { beginBookingProcess },
+  } = React.useContext(BookingContext);
+
   return (
     <Tippy
       delay={70}
@@ -14,7 +20,10 @@ const Seat = ({ status, rowName, seatIndex, price }) => {
         <Tooltip rowName={rowName} seatIndex={seatIndex} price={price} />
       }
     >
-      <button disabled={status === "available" ? false : true}>
+      <button
+        disabled={status === "available" ? false : true}
+        onClick={() => beginBookingProcess(seatId, price)}
+      >
         <img
           src={seatAvailable}
           alt="seat-available"

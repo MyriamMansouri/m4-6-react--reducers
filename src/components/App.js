@@ -3,6 +3,7 @@ import TicketWidget from "./TicketWidget";
 import { SeatContext } from "./SeatContext";
 
 import GlobalStyles from "./GlobalStyles";
+import PurchaseModal from "./PurchaseModal";
 
 function App() {
   const {
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <TicketWidget />
+      <PurchaseModal/>
       <GlobalStyles />
     </>
   );

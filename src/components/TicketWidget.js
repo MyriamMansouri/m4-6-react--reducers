@@ -30,6 +30,7 @@ const TicketWidget = () => {
                       <Seat
                         status={isBooked ? "unavailable" : "available"}
                         rowName={rowName}
+                        seatId={seatId}
                         seatIndex={seatIndex}
                         price={price}
                         width={36}
